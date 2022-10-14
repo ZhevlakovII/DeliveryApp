@@ -1,38 +1,22 @@
-package ru.izhxx.deliveryapp.presenter.screens
+package ru.izhxx.deliveryapp.presenter.components
 
-import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.RowScope
-import androidx.compose.material3.*
+import androidx.compose.material3.Icon
+import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.NavigationBarItemDefaults
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
-import androidx.navigation.compose.rememberNavController
 import ru.izhxx.deliveryapp.presenter.navigation.BottomNavigationItems
-import ru.izhxx.deliveryapp.presenter.navigation.RootNavigation
 import ru.izhxx.deliveryapp.presenter.theme.DeliveryTypography
-
-@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun MainScreen() {
-    val navController = rememberNavController()
-    val navigationItems = listOf(
-        BottomNavigationItems.Menu,
-        BottomNavigationItems.Profile,
-        BottomNavigationItems.Cart
-    )
-
-    Scaffold(bottomBar = { NavigationBar(navController, navigationItems) }) {
-        RootNavigation(navController = navController)
-    }
-}
+import ru.izhxx.deliveryapp.presenter.theme.lightTheme
 
 @Composable
 fun NavigationBar(
@@ -42,9 +26,12 @@ fun NavigationBar(
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = navBackStackEntry?.destination
 
-    NavigationBar {
+    androidx.compose.material3.NavigationBar(
+        containerColor = lightTheme.navigationBackgroundColor
+    ) {
         navItems.forEach { item ->
-            AddItem(screen = item,
+            AddItem(
+                screen = item,
                 currentDestination = currentDestination,
                 navController = navController
             )
@@ -79,12 +66,13 @@ fun RowScope.AddItem(
                 painter = painterResource(id = screen.iconResId),
                 contentDescription = stringResource(id = screen.descriptionResId)
             )
-        }
+        },
+        colors = NavigationBarItemDefaults.colors(
+            selectedIconColor = lightTheme.actionColor,
+            selectedTextColor = lightTheme.actionColor,
+            unselectedIconColor = lightTheme.inactiveColor,
+            unselectedTextColor = lightTheme.inactiveColor,
+            indicatorColor = lightTheme.navigationBackgroundColor
+        )
     )
-}
-
-@Preview
-@Composable
-fun PreviewBottom() {
-    MainScreen()
 }

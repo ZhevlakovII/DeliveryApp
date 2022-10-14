@@ -11,25 +11,21 @@ val DeliveryTypography= Typography(
     bodyMedium = TextStyle(
         fontFamily = FontFamily.Default,
         fontWeight = FontWeight.Normal,
-        fontSize = 14.sp,
-        color = lightTheme.textBodyColor
+        fontSize = 14.sp
     ),
     bodySmall = TextStyle(
         fontFamily = FontFamily.Default,
         fontWeight = FontWeight.Normal,
-        fontSize = 13.sp,
-        color = lightTheme.hintColor
+        fontSize = 13.sp
     ),
     headlineMedium = TextStyle(
         fontFamily = FontFamily.Default,
         fontWeight = FontWeight.Bold,
-        fontSize = 16.sp,
-        color = lightTheme.textHeaderColor
+        fontSize = 16.sp
     ),
     labelSmall = TextStyle(
         fontFamily = FontFamily.Default,
         fontWeight = FontWeight.Normal,
-        fontSize = 12.sp,
-        color = lightTheme.inactiveColor
+        fontSize = 12.sp
     )
 )

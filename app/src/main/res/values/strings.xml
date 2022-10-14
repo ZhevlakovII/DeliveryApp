@@ -6,4 +6,7 @@
     <string name="menu_description">Icon of Menu</string>
     <string name="profile_description">Icon of Profile</string>
     <string name="cart_description">Icon of Cart</string>
+    <string name="default_city">Moscow</string>
+    <string name="error_message">An unexpected error has occurred.\nWill you try again? &#128515;</string>
+    <string name="error_button_text">Do it!</string>
 </resources>
