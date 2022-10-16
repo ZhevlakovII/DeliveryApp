@@ -8,21 +8,20 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import ru.izhxx.deliveryapp.R
+import ru.izhxx.deliveryapp.domain.pojo.FoodCategory
 import ru.izhxx.deliveryapp.presenter.screens.menu.MenuState
 import ru.izhxx.deliveryapp.presenter.theme.DeliveryTypography
 import ru.izhxx.deliveryapp.presenter.theme.Shapes
 import ru.izhxx.deliveryapp.presenter.theme.lightTheme
 
 @Composable
-fun CategoryRow(state: MenuState.Display, onCategoryClick: () -> Unit) {
+fun CategoryRow(state: MenuState.Display, onCategoryClick: (Int) -> Unit) {
     LazyRow(
         modifier = Modifier.padding(bottom = 32.dp),
         content = {
             state.categories.forEachIndexed { index, category ->
-                val color = if (category == state.selectedCategory)
+                val color = if (category.categoryId == state.selectedCategoryId)
                     lightTheme.actionColor
                 else
                     lightTheme.hintColor
@@ -63,20 +62,20 @@ fun CategoryRow(state: MenuState.Display, onCategoryClick: () -> Unit) {
 @Composable
 fun CategoryButton(
     modifier: Modifier,
-    category: String,
+    category: FoodCategory,
     textColor: Color,
     backgroundColor: Color = Color.White,
     fontWeight: FontWeight = FontWeight.Normal,
-    onCategoryClick: () -> Unit
+    onCategoryClick: (Int) -> Unit
 ) {
     Button(
         modifier = modifier.height(32.dp),
-        onClick = onCategoryClick,
+        onClick =  { onCategoryClick(category.categoryId) },
         shape = Shapes.medium,
         colors = ButtonDefaults.buttonColors(containerColor = backgroundColor.copy(alpha = 0.2f))
     ) {
         Text(
-            text = category,
+            text = category.categoryName,
             style = DeliveryTypography.bodySmall,
             fontWeight = fontWeight,
             color = textColor

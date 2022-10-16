@@ -24,11 +24,9 @@ fun MainScreen() {
         BottomNavigationItems.Cart
     )
 
-    val cities = mainViewModel.getCities()
-
     Scaffold(
         containerColor = lightTheme.backgroundColor,
-        topBar = { TopBar(city = cities[1]) },
+        topBar = { TopBar(city = "Moscow") },
         bottomBar = { NavigationBar(navController, navigationItems) }
     ) {
         RootNavigation(navController = navController)

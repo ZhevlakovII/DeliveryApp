@@ -10,12 +10,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import ru.izhxx.deliveryapp.R
+import ru.izhxx.deliveryapp.domain.pojo.Banner
 
 @Composable
-fun BannerRow(bannerList: List<String>, onBannerClick: () -> Unit) {
+fun BannerRow(bannerList: List<Banner>, onBannerClick: (Int) -> Unit) {
     LazyRow(
         modifier = Modifier.padding(bottom = 24.dp),
         content = {
@@ -53,13 +53,13 @@ fun BannerRow(bannerList: List<String>, onBannerClick: () -> Unit) {
 }
 
 @Composable
-fun BannerButton(modifier: Modifier, banner: String, onBannerClick: () -> Unit) {
+fun BannerButton(modifier: Modifier, banner: Banner, onBannerClick: (Int) -> Unit) {
     IconButton(
         modifier = modifier,
-        onClick = onBannerClick,
+        onClick = { onBannerClick(banner.bannerId) },
         content = {
             Image(
-                painter = painterResource(id = banner.toInt()),
+                painter = painterResource(id = R.drawable.discount_banner),
                 contentDescription = "Banners",
                 contentScale = ContentScale.FillBounds,
                 modifier = Modifier.fillMaxSize()

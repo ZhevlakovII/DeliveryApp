@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.sp
 import ru.izhxx.deliveryapp.R
 
 @Composable
-fun Error(onClick: () -> Unit) {
+fun ErrorMenu(onClick: () -> Unit) {
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center

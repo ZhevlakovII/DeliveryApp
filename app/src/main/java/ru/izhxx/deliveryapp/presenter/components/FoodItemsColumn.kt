@@ -12,36 +12,35 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import ru.izhxx.deliveryapp.R
+import ru.izhxx.deliveryapp.domain.pojo.FoodItem
 import ru.izhxx.deliveryapp.presenter.screens.menu.MenuState
 import ru.izhxx.deliveryapp.presenter.theme.DeliveryTypography
 import ru.izhxx.deliveryapp.presenter.theme.Shapes
 import ru.izhxx.deliveryapp.presenter.theme.lightTheme
 
 @Composable
-fun FoodItemsColumn(state: MenuState.Display, onItemClick: () -> Unit) {
+fun FoodItemsColumn(state: MenuState.Display, onItemClick: (FoodItem) -> Unit) {
     Column {
         state.food.forEachIndexed { index, food ->
-            if (food.category == state.selectedCategory) {
-                when (index) {
-                    state.food.lastIndex -> FoodButtonRow(
+            when (index) {
+                state.food.lastIndex -> FoodButtonRow(
+                    food = food,
+                    modifier = Modifier.padding(start = 16.dp, end = 16.dp),
+                    onItemClick = onItemClick
+                )
+                else ->
+                    FoodButtonRow(
                         food = food,
-                        modifier = Modifier.padding(start = 16.dp, end = 16.dp),
+                        modifier = Modifier.padding(start = 16.dp, end = 16.dp, bottom = 32.dp),
                         onItemClick = onItemClick
                     )
-                    else ->
-                        FoodButtonRow(
-                            food = food,
-                            modifier = Modifier.padding(start = 16.dp, end = 16.dp, bottom = 32.dp),
-                            onItemClick = onItemClick
-                        )
-                }
             }
         }
     }
 }
 
 @Composable
-fun FoodButtonRow(food: Any, modifier: Modifier, onItemClick: () -> Unit) {
+fun FoodButtonRow(food: FoodItem, modifier: Modifier, onItemClick: (FoodItem) -> Unit) {
     Row(horizontalArrangement = Arrangement.Start, modifier = modifier.fillMaxWidth()) {
         Image(
             modifier = Modifier
@@ -55,14 +54,14 @@ fun FoodButtonRow(food: Any, modifier: Modifier, onItemClick: () -> Unit) {
 
         Column(modifier = Modifier.fillMaxSize()) {
             Text(
-                text = food.title,
+                text = food.name,
                 style = DeliveryTypography.headlineMedium,
                 modifier = Modifier
                     .padding(bottom = 8.dp)
                     .align(Alignment.Start)
             )
             Text(
-                text = food.description,
+                text = food.ingredients,
                 style = DeliveryTypography.bodyMedium,
                 modifier = Modifier
                     .padding(bottom = 8.dp)
@@ -72,7 +71,7 @@ fun FoodButtonRow(food: Any, modifier: Modifier, onItemClick: () -> Unit) {
                 overflow = TextOverflow.Ellipsis
             )
             OutlinedButton(
-                onClick = onItemClick,
+                onClick = { onItemClick(food) },
                 border = BorderStroke(width = 1.dp, color = lightTheme.actionColor),
                 modifier = Modifier
                     .height(32.dp)
@@ -80,7 +79,7 @@ fun FoodButtonRow(food: Any, modifier: Modifier, onItemClick: () -> Unit) {
                 shape = Shapes.medium
             ) {
                 Text(
-                    text = String.format("From ${food.minPrice}"),
+                    text = String.format("From ${food.minimalPrice}"),
                     style = DeliveryTypography.bodySmall,
                     color = lightTheme.actionColor
                 )

@@ -1,0 +1,26 @@
+[
+  {
+    "bannerId": 1,
+    "bannerUrl": "Combo"
+  },
+  {
+    "categoryId": 2,
+    "categoryName": "Pizza"
+  },
+  {
+    "categoryId": 3,
+    "categoryName": "Pasta"
+  },
+  {
+    "categoryId": 4,
+    "categoryName": "Drinks"
+  },
+  {
+    "categoryId": 5,
+    "categoryName": "Beer"
+  },
+  {
+    "categoryId": 6,
+    "categoryName": "Other"
+  }
+]

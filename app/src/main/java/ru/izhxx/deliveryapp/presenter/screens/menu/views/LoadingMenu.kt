@@ -10,7 +10,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun Loading() {
+fun LoadingMenu() {
     Box(modifier = Modifier.fillMaxSize()) {
         CircularProgressIndicator(
             modifier = Modifier.align(Alignment.Center),
