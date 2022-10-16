@@ -10,6 +10,7 @@ data class Colors(
     val textHeaderColor: Color,
     val textBodyColor: Color,
     val hintColor: Color,
+    val backgroundColor: Color
 )
 
 val lightTheme = Colors(
@@ -18,5 +19,6 @@ val lightTheme = Colors(
     inactiveColor = Color(0xFF7B7B7B),
     textHeaderColor = Color(0xFF222831),
     textBodyColor = Color(0xFFAAAAAD),
-    hintColor = Color(0xFFC3C4C9)
+    hintColor = Color(0xFFC3C4C9),
+    backgroundColor = Color(0xFFFBFBFB)
 )
