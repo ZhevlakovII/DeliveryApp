@@ -1,5 +1,6 @@
 package ru.izhxx.deliveryapp.presenter.components
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
@@ -18,21 +19,26 @@ import ru.izhxx.deliveryapp.presenter.theme.lightTheme
 @Composable
 fun CategoryRow(state: MenuState.Display, onCategoryClick: (Int) -> Unit) {
     LazyRow(
-        modifier = Modifier.padding(bottom = 32.dp),
+        modifier = Modifier.padding(bottom = 32.dp).background(lightTheme.backgroundColor),
         content = {
             state.categories.forEachIndexed { index, category ->
-                val color = if (category.categoryId == state.selectedCategoryId)
+                val textColor = if (category.categoryId == state.selectedCategoryId)
                     lightTheme.actionColor
                 else
                     lightTheme.hintColor
+
+                val backgroundColor = if (category.categoryId == state.selectedCategoryId)
+                    lightTheme.actionColor
+                else
+                    Color.White
 
                 when (index) {
                     0 -> item {
                         CategoryButton(
                             modifier = Modifier.padding(start = 16.dp),
                             category = category,
-                            textColor = color,
-                            backgroundColor = color,
+                            textColor = textColor,
+                            backgroundColor = backgroundColor,
                             fontWeight = FontWeight.Medium,
                             onCategoryClick = onCategoryClick
                         )
@@ -41,7 +47,8 @@ fun CategoryRow(state: MenuState.Display, onCategoryClick: (Int) -> Unit) {
                         CategoryButton(
                             modifier = Modifier.padding(start = 8.dp, end = 16.dp),
                             category = category,
-                            textColor = color,
+                            textColor = textColor,
+                            backgroundColor = backgroundColor,
                             onCategoryClick = onCategoryClick
                         )
                     }
@@ -49,7 +56,8 @@ fun CategoryRow(state: MenuState.Display, onCategoryClick: (Int) -> Unit) {
                         CategoryButton(
                             modifier = Modifier.padding(start = 8.dp),
                             category = category,
-                            textColor = color,
+                            textColor = textColor,
+                            backgroundColor = backgroundColor,
                             onCategoryClick = onCategoryClick
                         )
                     }

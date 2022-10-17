@@ -8,7 +8,7 @@ interface FoodItemRepo {
 
     fun deleteFoodItem(foodItem: FoodItem)
 
-    fun getLocalFoodItems(): Flow<List<FoodItem>>
+    fun getLocalFoodItems(): List<FoodItem>
 
     fun getRemoteFoodItems(): List<FoodItem>
 }

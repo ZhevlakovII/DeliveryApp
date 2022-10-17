@@ -8,7 +8,7 @@ interface FoodCategoryRepo {
 
     fun deleteFoodCategory(foodCategory: FoodCategory)
 
-    fun getLocalFoodCategories(): Flow<List<FoodCategory>>
+    fun getLocalFoodCategories(): List<FoodCategory>
 
     fun getRemoteFoodCategories(): List<FoodCategory>
 }

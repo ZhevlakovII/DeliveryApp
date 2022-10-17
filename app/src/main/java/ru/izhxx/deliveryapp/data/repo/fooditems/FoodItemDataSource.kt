@@ -8,5 +8,5 @@ interface FoodItemDataSource {
 
     fun deleteFoodItem(foodItem: FoodItem)
 
-    fun getFoodItems(): Flow<List<FoodItem>>
+    fun getFoodItems(): List<FoodItem>
 }

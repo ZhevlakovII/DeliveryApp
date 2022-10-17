@@ -8,5 +8,5 @@ interface FoodCategoryDataSource {
 
     fun deleteFoodCategory(foodCategory: FoodCategory)
 
-    fun getFoodCategories(): Flow<List<FoodCategory>>
+    fun getFoodCategories(): List<FoodCategory>
 }

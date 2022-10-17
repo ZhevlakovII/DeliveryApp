@@ -11,7 +11,7 @@ import ru.izhxx.deliveryapp.domain.pojo.Banner
 @Dao
 interface BannerDao {
     @Query("SELECT * FROM banners")
-    fun getBanners(): Flow<List<BannerEntity>>
+    fun getBanners(): List<BannerEntity>
 
     @Insert
     fun createBanner(banner: BannerEntity)

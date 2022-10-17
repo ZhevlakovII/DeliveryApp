@@ -3,6 +3,7 @@ package ru.izhxx.deliveryapp.presenter.components
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -20,20 +21,23 @@ import ru.izhxx.deliveryapp.presenter.theme.lightTheme
 
 @Composable
 fun FoodItemsColumn(state: MenuState.Display, onItemClick: (FoodItem) -> Unit) {
-    Column {
+    LazyColumn(userScrollEnabled = true, modifier = Modifier.height(780.dp)) {
         state.food.forEachIndexed { index, food ->
             when (index) {
-                state.food.lastIndex -> FoodButtonRow(
-                    food = food,
-                    modifier = Modifier.padding(start = 16.dp, end = 16.dp),
-                    onItemClick = onItemClick
-                )
-                else ->
+                state.food.lastIndex -> item {
+                    FoodButtonRow(
+                        food = food,
+                        modifier = Modifier.padding(start = 16.dp, end = 16.dp),
+                        onItemClick = onItemClick
+                    )
+                }
+                else -> item {
                     FoodButtonRow(
                         food = food,
                         modifier = Modifier.padding(start = 16.dp, end = 16.dp, bottom = 32.dp),
                         onItemClick = onItemClick
                     )
+                }
             }
         }
     }

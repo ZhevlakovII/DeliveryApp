@@ -11,7 +11,7 @@ import ru.izhxx.deliveryapp.domain.pojo.FoodItem
 @Dao
 interface FoodItemDao {
     @Query("SELECT * FROM food_items")
-    fun getFoodItems(): Flow<List<FoodItemEntity>>
+    fun getFoodItems(): List<FoodItemEntity>
 
     @Insert
     fun createFoodItem(foodItem: FoodItemEntity)

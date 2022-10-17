@@ -6,7 +6,7 @@ import ru.izhxx.deliveryapp.domain.repository.FoodItemRepo
 import javax.inject.Inject
 
 class GetLocalFoodItemsUseCase @Inject constructor(private val foodItemRepo: FoodItemRepo) {
-    fun invoke(): Flow<List<FoodItem>> {
+    fun invoke(): List<FoodItem> {
         return foodItemRepo.getLocalFoodItems()
     }
 }

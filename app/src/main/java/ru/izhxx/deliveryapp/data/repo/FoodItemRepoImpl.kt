@@ -17,7 +17,7 @@ class FoodItemRepoImpl @Inject constructor(
         foodItemDataSource.deleteFoodItem(foodItem = foodItem)
     }
 
-    override fun getLocalFoodItems(): Flow<List<FoodItem>> {
+    override fun getLocalFoodItems(): List<FoodItem> {
         return foodItemDataSource.getFoodItems()
     }
 

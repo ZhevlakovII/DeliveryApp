@@ -11,7 +11,7 @@ import ru.izhxx.deliveryapp.domain.pojo.FoodCategory
 @Dao
 interface FoodCategoryDao {
     @Query("SELECT * FROM food_categories")
-    fun getFoodCategories(): Flow<List<FoodCategoryEntity>>
+    fun getFoodCategories(): List<FoodCategoryEntity>
 
     @Insert
     fun createFoodCategory(foodCategory: FoodCategoryEntity)

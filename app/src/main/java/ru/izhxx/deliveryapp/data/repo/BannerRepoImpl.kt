@@ -15,7 +15,7 @@ class BannerRepoImpl @Inject constructor(private val bannerDataSource: BannerDat
         bannerDataSource.deleteBanner(banner = banner)
     }
 
-    override fun getLocalBanners(): Flow<List<Banner>> {
+    override fun getLocalBanners(): List<Banner> {
         return bannerDataSource.getBanners()
     }
 

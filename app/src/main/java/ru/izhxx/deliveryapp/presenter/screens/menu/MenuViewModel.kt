@@ -2,6 +2,7 @@ package ru.izhxx.deliveryapp.presenter.screens.menu
 
 import androidx.lifecycle.*
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import ru.izhxx.deliveryapp.domain.pojo.Banner
 import ru.izhxx.deliveryapp.domain.pojo.FoodCategory
@@ -23,9 +24,9 @@ class MenuViewModel @Inject constructor(
 
     private val _selectedCategory = MutableLiveData<Int>()
 
-    private val _banners: LiveData<List<Banner>> = getLocalBannersUseCase.invoke().asLiveData()
-    private val _categories: LiveData<List<FoodCategory>> = getLocalFoodCategoriesUseCase.invoke().asLiveData()
-    private val _foodItems: LiveData<List<FoodItem>> = getLocalFoodItemsUseCase.invoke().asLiveData()
+    private val _banners= MutableLiveData<List<Banner>>()
+    private val _categories = MutableLiveData<List<FoodCategory>>()
+    private val _foodItems = MutableLiveData<List<FoodItem>>()
 
     override fun obtainState(event: MenuEvent) {
         when (_state.value) {
@@ -52,9 +53,9 @@ class MenuViewModel @Inject constructor(
     private fun changeCategory(categoryId: Int) {
         _state.postValue(MenuState.Loading)
 
-        _selectedCategory.postValue(
+        _selectedCategory.value =
             _categories.value?.find { it.categoryId == categoryId }?.categoryId
-                ?: _categories.value!![0].categoryId)
+                ?: _categories.value!![0].categoryId
 
         val selectedFoods = arrayListOf<FoodItem>()
 
@@ -74,6 +75,10 @@ class MenuViewModel @Inject constructor(
     private fun loadItems() {
         viewModelScope.launch {
             _state.postValue(MenuState.Loading)
+            _banners.value = getLocalBannersUseCase.invoke()
+            _categories.value = getLocalFoodCategoriesUseCase.invoke()
+            _foodItems.value = getLocalFoodItemsUseCase.invoke()
+
             if (
                 _banners.value.isNullOrEmpty() ||
                 _categories.value.isNullOrEmpty() ||

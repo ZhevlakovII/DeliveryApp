@@ -8,7 +8,7 @@ interface BannerRepo {
 
     fun deleteBanner(banner: Banner)
 
-    fun getLocalBanners(): Flow<List<Banner>>
+    fun getLocalBanners(): List<Banner>
 
     fun getRemoteBanners(): List<Banner>
 }

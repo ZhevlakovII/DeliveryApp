@@ -1,7 +1,5 @@
 package ru.izhxx.deliveryapp.data.repo.banners
 
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
 import ru.izhxx.deliveryapp.data.local.db.BannerDao
 import ru.izhxx.deliveryapp.data.mapper.BannerEntityMapper
 import ru.izhxx.deliveryapp.domain.pojo.Banner
@@ -19,12 +17,19 @@ class BannerDataSourceImpl @Inject constructor(
         bannerDao.deleteBanner(banner = bannerEntityMapper.toEntity(banner))
     }
 
-    override fun getBanners(): Flow<List<Banner>> {
-        val bannerFlow = bannerDao.getBanners()
-        return bannerFlow.map { list ->
-            list.map { element ->
-                bannerEntityMapper.toItem(element)
-            }
-        }
+    /*
+    * The method returns a fake date due to the lack of a correct api for the application
+    * This changes only on develop branch
+    */
+    override fun getBanners(): List<Banner> {
+        return mutableListOf(
+            Banner(1, "SomeUrl"),
+            Banner(2, "SomeUrl"),
+            Banner(3, "SomeUrl")
+        )
+//        val bannerFlow = bannerDao.getBanners()
+//        return bannerFlow.map { item ->
+//            bannerEntityMapper.toItem(item)
+//        }
     }
 }

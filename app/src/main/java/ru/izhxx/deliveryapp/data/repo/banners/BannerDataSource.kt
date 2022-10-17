@@ -8,5 +8,5 @@ interface BannerDataSource {
 
     fun deleteBanner(banner: Banner)
 
-    fun getBanners(): Flow<List<Banner>>
+    fun getBanners(): List<Banner>
 }
